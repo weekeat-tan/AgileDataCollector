@@ -79,6 +79,7 @@ Y1 = df.copy()['ins_comp']
 X1 =  data_preprocessing(X1)
 knn_for_company = train_data(X1, Y1)
 
+# For Plan Recommendation
 X2 = df.copy().drop('subs_plan', axis=1)
 Y2 = df.copy()['subs_plan']
 
