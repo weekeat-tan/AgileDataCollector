@@ -88,3 +88,22 @@ def data_preprocessing(X):
         del X[feature]   
     
     return X
+
+def train_data(X, Y):            
+    pipeline = Pipeline(steps=[
+        ('scaler', StandardScaler()),
+        ('pca', PCA()),
+        ('knn', KNeighborsClassifier())
+    ])
+    hyperparameters = {
+        'pca__n_components': [12, 16, 20, 24],
+        'knn__n_neighbors': [6, 12, 18, 24]
+    }
+
+    knn = GridSearchCV(pipeline, hyperparameters, cv=5, scoring='roc_auc_ovr')
+    knn.fit(X, Y)
+
+    Y_pred = knn.predict(X)
+    print('accuracy_score:', accuracy_score(Y, Y_pred))
+    
+    return knn
