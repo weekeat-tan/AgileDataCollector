@@ -3,8 +3,8 @@ from flask import request, jsonify, json
 
 import pandas as pd
 
-from travel_insurance_company_recommender import data_preprocessing
-from travel_insurance_company_recommender import train_data
+from travel_insurance_recommender import data_preprocessing
+from travel_insurance_recommender import train_data
 
 app = Flask(__name__)
 
@@ -72,6 +72,7 @@ if __name__ == '__main__':
 # Train KNN
 df = pd.read_csv("project_data.csv")
 
+# For Company Recommendation
 X1 = df.copy().drop(['ins_comp', 'subs_plan'], axis=1)
 Y1 = df.copy()['ins_comp']
 
